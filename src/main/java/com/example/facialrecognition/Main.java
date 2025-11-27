@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
+
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Facial Recognition App - Java");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

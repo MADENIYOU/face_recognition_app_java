@@ -2,6 +2,7 @@ package com.example.facialrecognition;
 
 import org.bytedeco.javacpp.DoublePointer;
 import org.bytedeco.javacpp.IntPointer;
+import org.bytedeco.javacpp.indexer.IntIndexer;
 import org.bytedeco.opencv.opencv_core.*;
 import org.bytedeco.opencv.opencv_face.LBPHFaceRecognizer;
 import org.bytedeco.opencv.opencv_objdetect.CascadeClassifier;
@@ -16,10 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.bytedeco.opencv.global.opencv_core.*;
-import static org.bytedeco.opencv.global.opencv_face.createLBPHFaceRecognizer;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.*;
 import static org.bytedeco.opencv.global.opencv_imgproc.*;
-
 
 public class FaceRecognizerLogic {
 
@@ -40,7 +39,7 @@ public class FaceRecognizerLogic {
             }
 
             this.faceCascade = new CascadeClassifier(cascadeFile.getAbsolutePath());
-            this.faceRecognizer = createLBPHFaceRecognizer();
+            this.faceRecognizer = LBPHFaceRecognizer.create(); // Corrected instantiation
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +54,7 @@ public class FaceRecognizerLogic {
         File[] faceFiles = knownFacesDir.listFiles();
         MatVector faces = new MatVector(faceFiles.length);
         Mat labels = new Mat(faceFiles.length, 1, CV_32SC1);
-        IntPointer labelsBuf = labels.createIndexer().createIndexer();
+        IntIndexer labelsBuf = labels.createIndexer(); // Corrected createIndexer usage
 
         Map<String, Integer> nameLabelMap = new HashMap<>();
         int labelCounter = 0;

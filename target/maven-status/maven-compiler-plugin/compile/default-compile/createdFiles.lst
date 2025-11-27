@@ -1,0 +1,4 @@
+com\example\facialrecognition\GUI.class
+com\example\facialrecognition\Main.class
+com\example\facialrecognition\FaceRecognizerLogic.class
+com\example\facialrecognition\FacialRecognitionApp.class
